@@ -158,6 +158,10 @@ class Builder
             return $value;
         }
 
+        if (is_numeric($value)) {
+            return $value;
+        }
+        
         return '\'' . $value . '\'';
     }
 }
