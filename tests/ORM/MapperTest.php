@@ -13,7 +13,7 @@ class MapperTest extends TestCase
     /** @var Mapper */
     protected $mapper;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->reader = new AnnotationReader();

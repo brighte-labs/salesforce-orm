@@ -20,7 +20,7 @@ class emailTest extends TestCase
     /** @var $reader Reader */
     protected $reader;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->reader = new AnnotationReader();

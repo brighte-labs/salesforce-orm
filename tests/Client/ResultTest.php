@@ -12,7 +12,7 @@ class ResultTest extends TestCase
     /** @var Result */
     protected $result;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->result = new Result();

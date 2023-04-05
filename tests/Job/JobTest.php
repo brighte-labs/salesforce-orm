@@ -16,7 +16,7 @@ class JobTest extends TestCase
     /**
      * @throws \Doctrine\Common\Annotations\AnnotationException
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->job = new Job();

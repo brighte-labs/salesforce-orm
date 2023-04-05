@@ -33,7 +33,7 @@ class ConnectionTest extends TestCase
      */
     private $connection;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $logger = $this->createPartialMock(LoggerInterface::class, ['log', 'debug', 'emergency', 'critical', 'error', 'alert', 'warning', 'info', 'notice']);

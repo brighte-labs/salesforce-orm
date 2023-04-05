@@ -31,7 +31,7 @@ class EntityManagerTest extends TestCase
     /** @var Reader */
     protected $reader;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->config = ["clientId" => "***", "clientSecret" => "***", "path" => "***", 'username' => '***', "password" => "***", "apiVersion" => "***", 'apexEndPoint' => 'http://localhost/apex'];

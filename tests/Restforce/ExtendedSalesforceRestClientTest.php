@@ -21,7 +21,7 @@ class ExtendedSalesforceRestClientTest extends TestCase
     /** @var \GuzzleHttp\Psr7\Response */
     protected $response;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->guzzleClient = $this->createMock(ExtendedGuzzleRestClient::class);

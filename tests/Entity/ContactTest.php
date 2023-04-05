@@ -10,7 +10,7 @@ class ContactTest extends TestCase
     /** @var $contact Contact */
     protected $contact;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->contact = new Contact();

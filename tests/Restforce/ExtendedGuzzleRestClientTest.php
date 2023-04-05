@@ -22,7 +22,7 @@ class ExtendedGuzzleRestClientTest extends TestCase
     /**
      * @throws \ReflectionException
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->guzzleClient = new ExtendedGuzzleRestClient('test');

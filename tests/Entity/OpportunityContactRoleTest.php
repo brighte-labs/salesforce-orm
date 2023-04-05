@@ -10,7 +10,7 @@ class OpportunityContactRoleTest extends TestCase
     /** @var opportunityContactRole OpportunityContactRole */
     protected $opportunityContactRole;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->opportunityContactRole = new OpportunityContactRole();

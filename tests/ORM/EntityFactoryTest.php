@@ -13,7 +13,7 @@ class EntityFactoryTest extends TestCase
     /** @var EntityFactory */
     protected $entityFactory;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->mapper = $this->createMock(Mapper::class);

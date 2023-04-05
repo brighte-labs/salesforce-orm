@@ -1,2 +1,10 @@
 vendor/
 .idea/
+
+.phpunit.cache/test-results
+
+.phpunit.result.cache
+
+composer.lock
+
+phpunit.xml.bak

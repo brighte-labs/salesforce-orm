@@ -14,7 +14,7 @@ class QueryJobTest extends TestCase
     /**
      * @throws \Doctrine\Common\Annotations\AnnotationException
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->job = new QueryJob();
@@ -38,7 +38,7 @@ class QueryJobTest extends TestCase
         try {
             $job->getRequestBody();
         } catch (\Exception $e) {
-            $this->assertContains(JobException::MSG_FAILED_QUERY_REQUIRED_FOR_QUERY_JOB, $e->getMessage());
+            $this->assertStringContainsString(JobException::MSG_FAILED_QUERY_REQUIRED_FOR_QUERY_JOB, $e->getMessage());
         }
     }
 }

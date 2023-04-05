@@ -10,7 +10,7 @@ class AccountTest extends TestCase
     /** @var $account Account */
     protected $account;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->account = new Account();
