@@ -23,7 +23,7 @@ class ExtendedRestforceTest extends TestCase
     /**
      * @throws \EventFarm\Restforce\RestforceException
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $oAuthAccessToken = new OAuthAccessToken('test', 'test', 'test', 'test');

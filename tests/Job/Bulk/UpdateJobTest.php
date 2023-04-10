@@ -10,7 +10,7 @@ use Salesforce\Job\Job;
 use Salesforce\ORM\Exception\EntityException;
 use Salesforce\ORM\Mapper;
 
-class UpdatetJobTest extends TestCase
+class UpdateJobTest extends TestCase
 {
     /** @var $job UpdateJob */
     protected $job;
@@ -18,7 +18,7 @@ class UpdatetJobTest extends TestCase
     /**
      * @throws \Doctrine\Common\Annotations\AnnotationException
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->job = new UpdateJob();
@@ -96,7 +96,7 @@ class UpdatetJobTest extends TestCase
         try {
              $this->job->validate();
         } catch (\Exception $e) {
-            $this->assertContains(EntityException::MGS_REQUIRED_VALIDATIONS, $e->getMessage());
+            $this->assertStringContainsString(EntityException::MGS_REQUIRED_VALIDATIONS, $e->getMessage());
         }
     }
 
@@ -115,7 +115,7 @@ class UpdatetJobTest extends TestCase
         try {
              $this->job->validate();
         } catch (\Exception $e) {
-            $this->assertContains(EntityException::MGS_EMPTY_NONE_PROTECTION_DATA, $e->getMessage());
+            $this->assertStringContainsString(EntityException::MGS_EMPTY_NONE_PROTECTION_DATA, $e->getMessage());
         }
     }
 
@@ -131,7 +131,7 @@ class UpdatetJobTest extends TestCase
         try {
              $this->job->validate();
         } catch (\Exception $e) {
-            $this->assertContains(EntityException::MGS_ID_IS_NOT_PROVIDED, $e->getMessage());
+            $this->assertStringContainsString(EntityException::MGS_ID_IS_NOT_PROVIDED, $e->getMessage());
         }
     }
 }

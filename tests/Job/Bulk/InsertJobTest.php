@@ -19,7 +19,7 @@ class InsertJobTest extends TestCase
     /**
      * @throws \Doctrine\Common\Annotations\AnnotationException
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->job = new InsertJob();
@@ -91,7 +91,7 @@ class InsertJobTest extends TestCase
         try {
             $this->job->validate();
         } catch (\Exception $e) {
-            $this->assertContains(EntityException::MGS_REQUIRED_VALIDATIONS, $e->getMessage());
+            $this->assertStringContainsString(EntityException::MGS_REQUIRED_VALIDATIONS, $e->getMessage());
         }
     }
 
@@ -110,7 +110,7 @@ class InsertJobTest extends TestCase
         try {
              $this->job->validate();
         } catch (\Exception $e) {
-            $this->assertContains(EntityException::MGS_REQUIRED_PROPERTIES, $e->getMessage());
+            $this->assertStringContainsString(EntityException::MGS_REQUIRED_PROPERTIES, $e->getMessage());
         }
     }
 
@@ -130,7 +130,7 @@ class InsertJobTest extends TestCase
         try {
              $this->job->validate();
         } catch (\Exception $e) {
-            $this->assertContains(EntityException::MGS_EMPTY_NONE_PROTECTION_DATA, $e->getMessage());
+            $this->assertStringContainsString(EntityException::MGS_EMPTY_NONE_PROTECTION_DATA, $e->getMessage());
         }
     }
 }

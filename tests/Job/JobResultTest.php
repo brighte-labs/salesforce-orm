@@ -11,7 +11,7 @@ class JobResultTest extends TestCase
     /** @var $jobResult JobResult */
     protected $jobResult;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->jobResult = new JobResult();

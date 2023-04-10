@@ -23,7 +23,7 @@ class ExtendedOAuthRestClientTest extends TestCase
     /**
      * @throws \ReflectionException
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->salesforceClient = $this->createMock(ExtendedSalesforceRestClient::class);

@@ -18,7 +18,7 @@ class UpsertJobTest extends TestCase
     /**
      * @throws \Doctrine\Common\Annotations\AnnotationException
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->job = new UpsertJob();
@@ -93,7 +93,7 @@ class UpsertJobTest extends TestCase
         try {
             $this->job->validate();
         } catch (\Exception $e) {
-            $this->assertContains(EntityException::MGS_REQUIRED_VALIDATIONS, $e->getMessage());
+            $this->assertStringContainsString(EntityException::MGS_REQUIRED_VALIDATIONS, $e->getMessage());
         }
     }
 
@@ -112,7 +112,7 @@ class UpsertJobTest extends TestCase
         try {
              $this->job->validate();
         } catch (\Exception $e) {
-            $this->assertContains(EntityException::MGS_REQUIRED_PROPERTIES, $e->getMessage());
+            $this->assertStringContainsString(EntityException::MGS_REQUIRED_PROPERTIES, $e->getMessage());
         }
     }
 
@@ -132,7 +132,7 @@ class UpsertJobTest extends TestCase
         try {
              $this->job->validate();
         } catch (\Exception $e) {
-            $this->assertContains(EntityException::MGS_EMPTY_NONE_PROTECTION_DATA, $e->getMessage());
+            $this->assertStringContainsString(EntityException::MGS_EMPTY_NONE_PROTECTION_DATA, $e->getMessage());
         }
     }
 
@@ -148,7 +148,7 @@ class UpsertJobTest extends TestCase
         try {
              $this->job->validate();
         } catch (\Exception $e) {
-            $this->assertContains(JobException::MSG_UPSERT_DATA_CANNOT_HAVE_ID_ASSIGNED, $e->getMessage());
+            $this->assertStringContainsString(JobException::MSG_UPSERT_DATA_CANNOT_HAVE_ID_ASSIGNED, $e->getMessage());
         }
 
         $this->job->setExternalId('');
@@ -156,7 +156,7 @@ class UpsertJobTest extends TestCase
         try {
             $this->job->validate();
         } catch (\Exception $e) {
-            $this->assertContains(JobException::MSG_EXTERNAL_ID_FIELD_IS_REQUIRED, $e->getMessage());
+            $this->assertStringContainsString(JobException::MSG_EXTERNAL_ID_FIELD_IS_REQUIRED, $e->getMessage());
         }
     }
 }

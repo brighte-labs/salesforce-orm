@@ -10,7 +10,7 @@ class BuilderTest extends TestCase
     /** @var Builder */
     protected $builder;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->builder = new Builder();
@@ -21,7 +21,7 @@ class BuilderTest extends TestCase
         $from = 'Account';
         $this->builder->from($from);
         $query = $this->builder->getQuery();
-        $this->assertContains("FROM " . $from, $query);
+        $this->assertStringContainsString("FROM " . $from, $query);
     }
 
     public function testSelect()
@@ -29,7 +29,7 @@ class BuilderTest extends TestCase
         $select = ["id", "name"];
         $this->builder->select($select);
         $query = $this->builder->getQuery();
-        $this->assertContains(implode(',', $select), $query);
+        $this->assertStringContainsString(implode(',', $select), $query);
     }
 
     public function testWhere()
@@ -39,7 +39,7 @@ class BuilderTest extends TestCase
         $where = ["{$col}={$value}"];
         $this->builder->where($where);
         $query = $this->builder->getQuery();
-        $this->assertContains("{$col} = '{$value}'", $query);
+        $this->assertStringContainsString("{$col} = '{$value}'", $query);
     }
 
     public function testAndWhere()
@@ -50,7 +50,7 @@ class BuilderTest extends TestCase
         $this->builder->where($where);
         $this->builder->AndWhere("Id = 12345");
         $query = $this->builder->getQuery();
-        $this->assertContains("{$col} = '{$value}'", $query);
+        $this->assertStringContainsString("{$col} = '{$value}'", $query);
     }
 
     public function testOrWhere()
@@ -61,7 +61,7 @@ class BuilderTest extends TestCase
         $this->builder->where($where);
         $this->builder->OrWhere("Id = 12345");
         $query = $this->builder->getQuery();
-        $this->assertContains("{$col} = '{$value}'", $query);
+        $this->assertStringContainsString("{$col} = '{$value}'", $query);
     }
 
     public function testOrder()
@@ -72,7 +72,7 @@ class BuilderTest extends TestCase
         $this->builder->where($where);
         $this->builder->order([[0 => "ASC"], [1 => "DESC"]]);
         $query = $this->builder->getQuery();
-        $this->assertContains("{$col} = '{$value}'", $query);
+        $this->assertStringContainsString("{$col} = '{$value}'", $query);
     }
 
     public function testLimit()
@@ -80,6 +80,6 @@ class BuilderTest extends TestCase
         $limit = 10;
         $this->builder->limit($limit);
         $query = $this->builder->getQuery();
-        $this->assertContains("LIMIT " . $limit, $query);
+        $this->assertStringContainsString("LIMIT " . $limit, $query);
     }
 }

@@ -10,7 +10,7 @@ class OpportunityTest extends TestCase
     /** @var opportunity Opportunity */
     protected $opportunity;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->opportunity = new Opportunity();
