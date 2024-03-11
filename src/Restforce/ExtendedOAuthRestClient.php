@@ -202,7 +202,7 @@ class ExtendedOAuthRestClient implements ExtendedRestClientInterface
     protected function getOAuthAccessTokenFromResponse(ResponseInterface $response): OAuthAccessToken
     {
         if ($response->getStatusCode() !== 200) {
-            throw OAuthRestClientException::unableToLoadAccessToken();
+            throw new OAuthRestClientException(sprintf('Unable to load access token: %s', $response->getBody()->__toString()));
         }
 
         $response = json_decode($response->getBody()->__toString(), true);
@@ -219,7 +219,7 @@ class ExtendedOAuthRestClient implements ExtendedRestClientInterface
                 $response['expires_at'] ?? null
             );
         } catch (Throwable $e) {
-            throw OAuthRestClientException::unableToLoadAccessToken();
+            throw new OAuthRestClientException('Unable to load access token', 500, $e);
         }
     }
 

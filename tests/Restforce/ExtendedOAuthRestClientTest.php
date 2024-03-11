@@ -3,11 +3,15 @@
 namespace SalesforceTest\Job;
 
 use EventFarm\Restforce\Rest\OAuthAccessToken;
+use EventFarm\Restforce\Rest\OAuthRestClientException;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use Salesforce\Restforce\ExtendedGuzzleRestClient;
 use Salesforce\Restforce\ExtendedOAuthRestClient;
 use Salesforce\Restforce\ExtendedSalesforceRestClient;
+
+use function GuzzleHttp\Psr7\stream_for;
 
 class ExtendedOAuthRestClientTest extends TestCase
 {
@@ -70,5 +74,19 @@ class ExtendedOAuthRestClientTest extends TestCase
         $this->salesforceClient->expects($this->exactly(1))->method('setBaseUriForRestClient');
         $this->salesforceClient->expects($this->exactly(1))->method('setResourceOwnerUrl');
         $this->oAuthClient->putCsv('/test');
+    }
+
+    public function testExceptionLogging() {
+        $reflection = new ReflectionClass($this->oAuthClient);
+        $reflection_property = $reflection->getProperty('oAuthAccessToken');
+        $reflection_property->setAccessible(true);
+        $reflection_property->setValue($this->oAuthClient, null);
+
+        $mockResponse = new Response(400, [], stream_for('{"error": "test"}'));
+
+        $this->extendedGuzzle->method('post')->willReturn($mockResponse);
+        $this->expectException(OAuthRestClientException::class);
+        $this->expectExceptionMessage('Unable to load access token: {"error": "test"}');
+        $this->oAuthClient->get('/test');
     }
 }
